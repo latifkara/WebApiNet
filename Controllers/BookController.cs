@@ -10,6 +10,7 @@ using WebApiNet.BookOperations.GetBooks;
 using WebApiNet.BookOperations.CreateBook;
 using WebApiNet.BookOperations.UpdateBook;
 using WebApiNet.BookOperations.DeleteBook;
+using WebApiNet.BookOperations.GetBookDetail;
 
 namespace WebApiNet.AddControllers
 {
@@ -33,10 +34,21 @@ namespace WebApiNet.AddControllers
         }
 
         [HttpGet("{id}")]
-        public Book GetBooks(int id) 
+        public IActionResult GetBooks(int id) 
         {
-            var book = _context.Books.Where(book=> book.Id == id).SingleOrDefault();
-            return book;
+            GetBookDetailModel result;
+            try
+            {
+                GetBookDetailQuery query = new GetBookDetailQuery(_context);
+                query.BookId = id;
+                result = query.Handle();
+            }
+            catch (Exception ex)
+            {
+                
+                return BadRequest(ex.Message);
+            }
+            return Ok(result);
         }
 
         [HttpPost]
@@ -61,11 +73,12 @@ namespace WebApiNet.AddControllers
 
         public IActionResult UpdateBook(int id, [FromBody] UpdateBookModel updateBook)
         {
-           UpdateBookCommand update = new UpdateBookCommand(_context, id);
+           UpdateBookCommand update = new UpdateBookCommand(_context);
            try
            {
                 
                 update.up_Model = updateBook;
+                update.BookId = id;
                 update.Handle();
                
            }
@@ -82,9 +95,10 @@ namespace WebApiNet.AddControllers
 
         public IActionResult DeleteBook(int id)
         {
-            DeleteBookCommand delete = new DeleteBookCommand(_context, id);
+            DeleteBookCommand delete = new DeleteBookCommand(_context);
            try
            {
+               delete.BookId = id;
                delete.Handle();
            }
            catch (Exception ex)

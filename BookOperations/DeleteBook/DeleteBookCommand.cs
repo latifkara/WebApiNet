@@ -9,20 +9,20 @@ namespace WebApiNet.BookOperations.DeleteBook
 {
     public class DeleteBookCommand
     {
-        private readonly int _id;
+        public int BookId { get; set;}
         private readonly BookStoreDbContext _dbContext;
-        public DeleteBookCommand(BookStoreDbContext dbContext,int id)
+        public DeleteBookCommand(BookStoreDbContext dbContext)
         {
             _dbContext = dbContext;
-            _id = id;
+         
         }
 
         public void Handle()
         {
-            var book = _dbContext.Books.SingleOrDefault(x=> x.Id == _id);
+            var book = _dbContext.Books.SingleOrDefault(x=> x.Id == BookId);
 
             if(book is  null)
-                throw new InvalidOperationException("Kitap yok");
+                throw new InvalidOperationException("Silenecek Kitap Bulunmadı");
 
             _dbContext.Books.Remove(book);
             _dbContext.SaveChanges();
