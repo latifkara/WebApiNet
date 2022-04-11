@@ -12,6 +12,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using Microsoft.EntityFrameworkCore;
+using System.Reflection;
 using WebApiNet.DbOperations;
 
 namespace WebApiNet
@@ -35,6 +36,7 @@ namespace WebApiNet
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "WebApiNet", Version = "v1" });
             });
             services.AddDbContext<BookStoreDbContext>(options => options.UseInMemoryDatabase(databaseName: "BookStoreDB"));
+            services.AddAutoMapper(Assembly.GetExecutingAssembly());
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

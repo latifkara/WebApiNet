@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "F:\\4.yil_birinci_dönem\\pratik.dev\\.Net\\netProject\\WebApiNet\\WebApiNet.csproj": {}
+    "F:\\4.yil_birinci_dnem\\pratik.dev\\.Net\\netProject\\WebApiNet\\WebApiNet.csproj": {}
   },
   "projects": {
-    "F:\\4.yil_birinci_dönem\\pratik.dev\\.Net\\netProject\\WebApiNet\\WebApiNet.csproj": {
+    "F:\\4.yil_birinci_dnem\\pratik.dev\\.Net\\netProject\\WebApiNet\\WebApiNet.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "F:\\4.yil_birinci_dönem\\pratik.dev\\.Net\\netProject\\WebApiNet\\WebApiNet.csproj",
+        "projectUniqueName": "F:\\4.yil_birinci_dnem\\pratik.dev\\.Net\\netProject\\WebApiNet\\WebApiNet.csproj",
         "projectName": "WebApiNet",
-        "projectPath": "F:\\4.yil_birinci_dönem\\pratik.dev\\.Net\\netProject\\WebApiNet\\WebApiNet.csproj",
+        "projectPath": "F:\\4.yil_birinci_dnem\\pratik.dev\\.Net\\netProject\\WebApiNet\\WebApiNet.csproj",
         "packagesPath": "C:\\Users\\latifkara\\.nuget\\packages\\",
-        "outputPath": "F:\\4.yil_birinci_dönem\\pratik.dev\\.Net\\netProject\\WebApiNet\\obj\\",
+        "outputPath": "F:\\4.yil_birinci_dnem\\pratik.dev\\.Net\\netProject\\WebApiNet\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\latifkara\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -40,6 +40,14 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "dependencies": {
+            "AutoMapper": {
+              "target": "Package",
+              "version": "[11.0.1, )"
+            },
+            "AutoMapper.Extensions.Microsoft.DependencyInjection": {
+              "target": "Package",
+              "version": "[11.0.0, )"
+            },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
               "version": "[5.0.6, )"

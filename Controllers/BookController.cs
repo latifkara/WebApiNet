@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using AutoMapper;
 
 using WebApiNet.DbOperations;
 using WebApiNet.BookOperations.GetBooks;
@@ -18,16 +19,17 @@ namespace WebApiNet.AddControllers
     [Route("[controller]")]
     public class BookController : ControllerBase
     {
-        
+        private readonly IMapper _mapper;
         readonly BookStoreDbContext _context;
-        public BookController(BookStoreDbContext context)
+        public BookController(BookStoreDbContext context,IMapper mapper)
         {
             _context = context;
+            _mapper = mapper;
         }
         [HttpGet]
         public IActionResult GetBooks() 
         {
-            GetBooksQuery query = new GetBooksQuery(_context);
+            GetBooksQuery query = new GetBooksQuery(_context, _mapper);
             var result = query.Handle();
             return Ok(result);
 
@@ -39,7 +41,7 @@ namespace WebApiNet.AddControllers
             GetBookDetailModel result;
             try
             {
-                GetBookDetailQuery query = new GetBookDetailQuery(_context);
+                GetBookDetailQuery query = new GetBookDetailQuery(_context,_mapper);
                 query.BookId = id;
                 result = query.Handle();
             }
@@ -54,7 +56,7 @@ namespace WebApiNet.AddControllers
         [HttpPost]
         public IActionResult AddBook([FromBody] CreateBookModel newBook)
         {
-            CreateBookCommand command = new CreateBookCommand(_context);
+            CreateBookCommand command = new CreateBookCommand(_context, _mapper);
             try
             {
 

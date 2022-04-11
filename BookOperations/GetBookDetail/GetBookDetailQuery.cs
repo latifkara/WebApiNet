@@ -6,16 +6,19 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using WebApiNet.DbOperations;
 using WebApiNet.Common;
+using AutoMapper;
 
 namespace WebApiNet.BookOperations.GetBookDetail
 {
     public class GetBookDetailQuery
     {
+        private readonly IMapper _mapper; 
         public int BookId { get; set; }
         private readonly BookStoreDbContext _dbContext;
-        public GetBookDetailQuery(BookStoreDbContext dbContext)
+        public GetBookDetailQuery(BookStoreDbContext dbContext, IMapper mapper)
         {
             _dbContext = dbContext;
+            _mapper = mapper;
         }
 
         public GetBookDetailModel Handle()
@@ -23,11 +26,7 @@ namespace WebApiNet.BookOperations.GetBookDetail
              var book = _dbContext.Books.Where(book=> book.Id == BookId).SingleOrDefault();
             if(book is null)
                 throw new InvalidOperationException("Kitap Bulunmadı");
-             GetBookDetailModel vm = new GetBookDetailModel();
-             vm.Title = book.Title;
-             vm.Genre = ((GenreEnum)book.GenreId).ToString();
-             vm.PageCount = book.PageCount;
-             vm.PublishDate = book.PublishDate.Date.ToString("dd/MM/yyy");
+             GetBookDetailModel vm = _mapper.Map<GetBookDetailModel>(book);
              return vm;
         }
         
