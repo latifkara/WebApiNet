@@ -5,6 +5,8 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using AutoMapper;
+using FluentValidation.Results;
+using FluentValidation;
 
 using WebApiNet.DbOperations;
 using WebApiNet.BookOperations.GetBooks;
@@ -43,6 +45,8 @@ namespace WebApiNet.AddControllers
             {
                 GetBookDetailQuery query = new GetBookDetailQuery(_context,_mapper);
                 query.BookId = id;
+                GetBookCommandValidator validator = new GetBookCommandValidator();
+                validator.ValidateAndThrow(query);
                 result = query.Handle();
             }
             catch (Exception ex)
@@ -59,9 +63,10 @@ namespace WebApiNet.AddControllers
             CreateBookCommand command = new CreateBookCommand(_context, _mapper);
             try
             {
-
                 command.Model = newBook;
-                command.Handle();
+                CreateBookCommandValidator validator = new CreateBookCommandValidator();
+                validator.ValidateAndThrow(command);
+                command.Handle();                                        
             }
             catch (Exception ex)
             {
@@ -81,6 +86,8 @@ namespace WebApiNet.AddControllers
                 
                 update.up_Model = updateBook;
                 update.BookId = id;
+                UpdateBookCommandValidator validator = new UpdateBookCommandValidator();
+                validator.ValidateAndThrow(update);
                 update.Handle();
                
            }
@@ -101,6 +108,8 @@ namespace WebApiNet.AddControllers
            try
            {
                delete.BookId = id;
+               DeleteBookCommandValidator validator = new DeleteBookCommandValidator();
+               validator.ValidateAndThrow(delete);
                delete.Handle();
            }
            catch (Exception ex)

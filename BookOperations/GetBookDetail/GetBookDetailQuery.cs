@@ -23,7 +23,7 @@ namespace WebApiNet.BookOperations.GetBookDetail
 
         public GetBookDetailModel Handle()
         {
-             var book = _dbContext.Books.Where(book=> book.Id == BookId).SingleOrDefault();
+            var book = _dbContext.Books.Where(book=> book.Id == BookId).SingleOrDefault();
             if(book is null)
                 throw new InvalidOperationException("Kitap Bulunmadı");
              GetBookDetailModel vm = _mapper.Map<GetBookDetailModel>(book);

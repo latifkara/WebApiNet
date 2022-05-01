@@ -72,3 +72,4 @@ F:\4.yil_birinci_dnem\pratik.dev\.Net\netProject\WebApiNet\obj\Debug\net5.0\WebA
 F:\4.yil_birinci_dnem\pratik.dev\.Net\netProject\WebApiNet\obj\Debug\net5.0\ref\WebApiNet.dll
 F:\4.yil_birinci_dnem\pratik.dev\.Net\netProject\WebApiNet\obj\Debug\net5.0\WebApiNet.pdb
 F:\4.yil_birinci_dnem\pratik.dev\.Net\netProject\WebApiNet\obj\Debug\net5.0\WebApiNet.genruntimeconfig.cache
+F:\4.yil_birinci_dnem\pratik.dev\.Net\netProject\WebApiNet\bin\Debug\net5.0\FluentValidation.dll

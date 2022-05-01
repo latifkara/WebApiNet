@@ -13,6 +13,7 @@ namespace WebApiNet.BookOperations.CreateBook
     public class CreateBookCommand
     {
         public CreateBookModel Model { get; set; }
+        
         private readonly IMapper _mapper; 
         private readonly BookStoreDbContext _dbContext;
         public CreateBookCommand(BookStoreDbContext dbContext, IMapper mapper)
@@ -20,7 +21,7 @@ namespace WebApiNet.BookOperations.CreateBook
             _dbContext = dbContext;
             _mapper = mapper;
         }
-
+        
         public void Handle()
         {
             var book = _dbContext.Books.SingleOrDefault(x=> x.Title == Model.Title);
