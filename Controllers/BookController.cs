@@ -41,19 +41,11 @@ namespace WebApiNet.AddControllers
         public IActionResult GetBooks(int id) 
         {
             GetBookDetailModel result;
-            try
-            {
-                GetBookDetailQuery query = new GetBookDetailQuery(_context,_mapper);
-                query.BookId = id;
-                GetBookCommandValidator validator = new GetBookCommandValidator();
-                validator.ValidateAndThrow(query);
-                result = query.Handle();
-            }
-            catch (Exception ex)
-            {
-                
-                return BadRequest(ex.Message);
-            }
+            GetBookDetailQuery query = new GetBookDetailQuery(_context,_mapper);
+            query.BookId = id;
+            GetBookCommandValidator validator = new GetBookCommandValidator();
+            validator.ValidateAndThrow(query);
+            result = query.Handle();
             return Ok(result);
         }
 
@@ -61,18 +53,10 @@ namespace WebApiNet.AddControllers
         public IActionResult AddBook([FromBody] CreateBookModel newBook)
         {
             CreateBookCommand command = new CreateBookCommand(_context, _mapper);
-            try
-            {
-                command.Model = newBook;
-                CreateBookCommandValidator validator = new CreateBookCommandValidator();
-                validator.ValidateAndThrow(command);
-                command.Handle();                                        
-            }
-            catch (Exception ex)
-            {
-                
-                return BadRequest(ex.Message);
-            }
+            command.Model = newBook;
+            CreateBookCommandValidator validator = new CreateBookCommandValidator();
+            validator.ValidateAndThrow(command);
+            command.Handle();                                        
             return Ok();
         }
 
@@ -80,23 +64,13 @@ namespace WebApiNet.AddControllers
 
         public IActionResult UpdateBook(int id, [FromBody] UpdateBookModel updateBook)
         {
-           UpdateBookCommand update = new UpdateBookCommand(_context);
-           try
-           {
-                
-                update.up_Model = updateBook;
-                update.BookId = id;
-                UpdateBookCommandValidator validator = new UpdateBookCommandValidator();
-                validator.ValidateAndThrow(update);
-                update.Handle();
-               
-           }
-           catch (Exception ex)
-           {
-               
-               return BadRequest(ex.Message);
-           }
-           return Ok();
+            UpdateBookCommand update = new UpdateBookCommand(_context);  
+            update.up_Model = updateBook;
+            update.BookId = id;
+            UpdateBookCommandValidator validator = new UpdateBookCommandValidator();
+            validator.ValidateAndThrow(update);
+            update.Handle();
+            return Ok();
 
         }
 
@@ -105,18 +79,10 @@ namespace WebApiNet.AddControllers
         public IActionResult DeleteBook(int id)
         {
             DeleteBookCommand delete = new DeleteBookCommand(_context);
-           try
-           {
-               delete.BookId = id;
-               DeleteBookCommandValidator validator = new DeleteBookCommandValidator();
-               validator.ValidateAndThrow(delete);
-               delete.Handle();
-           }
-           catch (Exception ex)
-           {
-               
-               return BadRequest(ex.Message);
-           }
+            delete.BookId = id;
+            DeleteBookCommandValidator validator = new DeleteBookCommandValidator();
+            validator.ValidateAndThrow(delete);
+            delete.Handle();
             return Ok();
         }
     }

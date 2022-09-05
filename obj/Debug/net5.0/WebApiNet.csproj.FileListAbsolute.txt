@@ -73,3 +73,4 @@ F:\4.yil_birinci_dnem\pratik.dev\.Net\netProject\WebApiNet\obj\Debug\net5.0\ref\
 F:\4.yil_birinci_dnem\pratik.dev\.Net\netProject\WebApiNet\obj\Debug\net5.0\WebApiNet.pdb
 F:\4.yil_birinci_dnem\pratik.dev\.Net\netProject\WebApiNet\obj\Debug\net5.0\WebApiNet.genruntimeconfig.cache
 F:\4.yil_birinci_dnem\pratik.dev\.Net\netProject\WebApiNet\bin\Debug\net5.0\FluentValidation.dll
+F:\4.yil_birinci_dnem\pratik.dev\.Net\netProject\WebApiNet\bin\Debug\net5.0\Newtonsoft.Json.dll

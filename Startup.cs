@@ -14,6 +14,8 @@ using Microsoft.OpenApi.Models;
 using Microsoft.EntityFrameworkCore;
 using System.Reflection;
 using WebApiNet.DbOperations;
+using WebApiNet.Middlewares;
+using WebApiNet.Services;
 
 namespace WebApiNet
 {
@@ -37,6 +39,7 @@ namespace WebApiNet
             });
             services.AddDbContext<BookStoreDbContext>(options => options.UseInMemoryDatabase(databaseName: "BookStoreDB"));
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
+            services.AddSingleton<ILoggerServices,DBLogger>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -54,6 +57,8 @@ namespace WebApiNet
             app.UseRouting();
 
             app.UseAuthorization();
+
+            app.UseCustomExceptionMiddleware();
 
             app.UseEndpoints(endpoints =>
             {
