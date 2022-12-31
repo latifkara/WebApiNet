@@ -84,6 +84,8 @@ namespace WebApiNet.AddControllers
             validator.ValidateAndThrow(delete);
             delete.Handle();
             return Ok();
+
+            
         }
     }
 }
